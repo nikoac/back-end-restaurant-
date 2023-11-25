@@ -11,8 +11,12 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors({}));
 
+// routes
+
+
 // useRoutes
 
+
 app.listen(PORT, () => {
-    console.log(`Running on port ${PORT}`)
+    console.log(`Listening to the port ${PORT}`)
 })
