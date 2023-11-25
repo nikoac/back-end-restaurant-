@@ -28,6 +28,7 @@ const userSchema = new Schema({
         min: [16, 'La edad mínima requerida es de 16 años'],
         max: [100, 'La edad máxima requerida es de 100 años']
     },
-})
+}, {timestamps: true}
+)
 
 module.exports = model('user', userSchema);
