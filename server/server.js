@@ -14,9 +14,11 @@ app.use(cors({}));
 
 // routes
 
+const bookingRoutes = require('../routes/booking.routes');
 
 // useRoutes
 
+app.use('/bookings', bookingRoutes)
 
 app.listen(PORT, () => {
     console.log(`Listening to the port ${PORT}`)
