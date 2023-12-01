@@ -1,13 +1,13 @@
 const { Router } = require('express')
 const { getBookings, createBookings, editBookings, deleteBookings } = require('../controllers/booking.controllers')
-const route = Router()
+const routeB = Router()
 
-route.get('/', getBookings)
+routeB.get('/', getBookings)
 
-route.post('/create', createBookings)
+routeB.post('/create', createBookings)
 
-route.patch('/edit/:id', editBookings)
+routeB.patch('/edit/:id', editBookings)
 
-route.delete('/delete/:id', deleteBookings)
+routeB.delete('/delete/:id', deleteBookings)
 
-module.exports = route
+module.exports = routeB

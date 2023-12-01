@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.use(cors({}));
 
 // routes
-
+const productRoutes = require
 const bookingRoutes = require('../routes/booking.routes');
 
 // useRoutes
