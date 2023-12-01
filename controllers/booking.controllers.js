@@ -3,7 +3,7 @@ const Booking = require('../models/booking.model');
 const createBookings = async (req, res) => {
     try {
         const payload = req.body;
-        const newBooking = new Booking(payload);
+        const newBooking = await new Booking(payload);
         await newBooking.save();
         return res.status(201).json('Reserva añadida');
     } catch (error) {
