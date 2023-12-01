@@ -12,6 +12,7 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: [true, 'Este campo es requerido'],
+        unique: true,
     },
     password: {
         type: String,
@@ -27,6 +28,10 @@ const userSchema = new Schema({
         type: Number,
         min: [16, 'La edad mínima requerida es de 16 años'],
         max: [100, 'La edad máxima requerida es de 100 años']
+    },
+    disabled: {
+        type: Boolean,
+        default: false,
     },
 }, {timestamps: true}
 )
