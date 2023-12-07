@@ -24,7 +24,7 @@ const BookingSchema = new Schema({
         min: [1, 'El Maximo para una reserva son 15 comensales'],
         max: [15, 'El Maximo para una reserva son 15 comensales']
     }
-}
+}, {timestamps:true} 
 )
 
 module.exports = model('booking', BookingSchema)

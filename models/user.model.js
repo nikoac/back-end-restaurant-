@@ -13,6 +13,7 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Este campo es requerido'],
         unique: true,
+        lowercase: true,
     },
     password: {
         type: String,

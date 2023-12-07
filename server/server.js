@@ -13,12 +13,16 @@ app.use(morgan('dev'));
 app.use(cors({}));
 
 // routes
-const productRoutes = require
+
 const bookingRoutes = require('../routes/booking.routes');
+const userRoutes = require('../routes/users.routes');
+const loginRoutes = require('../routes/login.routes');
 
 // useRoutes
 
-app.use('/bookings', bookingRoutes)
+app.use('/bookings', bookingRoutes);
+app.use('/users', userRoutes);
+app.use('/login', loginRoutes)
 
 app.listen(PORT, () => {
     console.log(`Listening to the port ${PORT}`)
