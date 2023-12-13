@@ -1,8 +1,12 @@
 const { passMatch } = require("../helpers/hashPassword");
+const { validateFields } = require("../helpers/utils");
 const { getUserByEmailService } = require("../services/user.services");
+
 
 const login = async (req, res) => {
   try {
+    const isValid = validateFields(req, res) 
+        if (!isValid) return ;
     const {email, password} = req.body;
     const response = await getUserByEmailService(email)
     if (!response) {

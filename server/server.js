@@ -15,7 +15,7 @@ app.use(cors({}));
 // routes
 
 const bookingRoutes = require('../routes/booking.routes');
-const userRoutes = require('../routes/users.routes');
+const userRoutes = require('../routes/users.routes')
 const loginRoutes = require('../routes/login.routes');
 
 // useRoutes

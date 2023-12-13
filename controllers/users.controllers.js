@@ -1,7 +1,10 @@
+const { validationResult } = require('express-validator');
 const { hasingPassword } = require('../helpers/hashPassword');
 const User = require('../models/user.model');
 const { getAllUsersService, getUserByIdService, editUserService, createUserService, deleteUserService, getUserByEmailService } = require('../services/user.services');
-const bcrypt = require ('bcrypt')
+const bcrypt = require ('bcrypt');
+const { isObjectIdOrHexString } = require('mongoose');
+const { validateFields } = require('../helpers/utils');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -14,6 +17,8 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const { id } = req.params;
         const response = await getUserByIdService(id);
         if (!response)
@@ -26,6 +31,9 @@ const getUserById = async (req, res) => {
 
 const checkEmailExist = async (req, res) => {
     try {
+      const isValid = validateFields(req, res) 
+      if (!isValid) return 
+
       const { email } = req.query;
       const response = await getUserByEmailService(email);
       if (response) {
@@ -40,6 +48,8 @@ const checkEmailExist = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const payload = req.body;
         const userWithPassHash = await hasingPassword(payload)
         const response = createUserService(userWithPassHash);
@@ -51,6 +61,8 @@ const createUser = async (req, res) => {
 
 const editUser = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const { id } = req.params;
         const payload = req.body;
         const response = await editUserService(id, payload);
@@ -64,6 +76,8 @@ const editUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const { id } = req.params;
         const response = await deleteUserService(id);
         if (!response)

@@ -1,3 +1,4 @@
+const { validateFields } = require('../helpers/utils');
 const Booking = require('../models/booking.model');
 const { options } = require('../routes/booking.routes');
 const { getAllBookingsService, createBookingsService, editBookingsService, deleteBookingService, getBookingsByIdService } = require('../services/booking.services');
@@ -14,6 +15,8 @@ const getBookings = async (req, res) => {
 
 const getBookingsById = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const { id } = req.params
         const response = await getBookingsByIdService(id)
         if (!response) {
@@ -29,6 +32,8 @@ const getBookingsById = async (req, res) => {
 
 const createBookings = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const payload = req.body;
         const response = await createBookingsService(payload)
         console.log(response);
@@ -40,6 +45,8 @@ const createBookings = async (req, res) => {
 
 const editBookings = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const { id } = req.params;
         const payload = req.body;
         const EditedBooking = await editBookingsService(id, payload)
@@ -53,6 +60,8 @@ const editBookings = async (req, res) => {
 }
 const deleteBookings = async (req, res) => {
     try {
+        const isValid = validateFields(req, res) 
+        if (!isValid) return 
         const { id } = req.params;
         const deleteBooking = await deleteBookingService(id)
         if(!deleteBooking) {

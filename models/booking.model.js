@@ -3,8 +3,8 @@ const BookingSchema = new Schema({
     day:{
         type:Number,
         required:[true, 'Ingrese el Dia'],
-        min: [1, 'Ingrese la fecha deseada'],
-        max: [31, 'Ingrese la fecha deseada']
+        min: [1, 'Ingrese la fecha deseada del 1 al 31'],
+        max: [31, 'Ingrese la fecha deseada del 1 al 31']
     },
     hour:{
         type:Number,
