@@ -1,7 +1,7 @@
 const { isObjectIdOrHexString } = require("mongoose");
 const { getUserByEmailService } = require("../services/user.services");
 const { body, param} = require("express-validator");
-const { checkEmailExistValidaton, isValidId } = require("../helpers/validation");
+const { checkEmailExistValidaton, isValidId, checkMaxAgeValidation, checkMinAgeValidation } = require("../helpers/validation");
 
 
 const validateEmail = body("email")
@@ -34,6 +34,12 @@ const validateAge = body("age")
 .isEmpty()
 .withMessage("El campo age es obligatorio");
 
+const validateMaxAge = body('age')
+.custom(checkMaxAgeValidation)
+
+const validateMinAge = body('age')
+.custom(checkMinAgeValidation)
+
 const validateId = param("id")
 .custom(isValidId)
 .not()
@@ -61,7 +67,9 @@ const createUserValidations = [
 
 //patchValidations
 const editUserValidations = [
-  validateId
+  validateId,
+  validateMaxAge,
+  validateMinAge
 ]
 
 //deleteUserValidations

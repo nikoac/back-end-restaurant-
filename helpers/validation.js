@@ -16,10 +16,30 @@ const isValidId = async (id) => {
   return false;
 };
 
+const checkMaxAgeValidation = ( res,{ req }) => {
+  const age = req.body.age;
+   if ( age > 100) {
+      throw new Error('La edad maxima es de 100 años')
+   } else (age < 100 )
+     return true
+};
+
+
+const checkMinAgeValidation =  ( res,{ req }) => {
+  const age = req.body.age;
+  if ( age < 16 ) {
+    throw new Error('La edad minima es de 16 años')
+  } else (age > 16 )
+  return true
+};
+
+
 
 
 module.exports = {
   checkEmailExistValidaton,
   isValidId,
+  checkMaxAgeValidation,
+  checkMinAgeValidation
   
 };

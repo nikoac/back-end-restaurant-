@@ -17,7 +17,11 @@ const editBookingsService = async (id, payload) => {
   const options = {
     new: true,
   }
+<<<<<<< Updated upstream
   await Booking.findByIdAndUpdate(id, payload, options)
+=======
+  return await Booking.findByIdAndUpdate(id, payload, options)
+>>>>>>> Stashed changes
 }
 
 const deleteBookingService = async (id) => {

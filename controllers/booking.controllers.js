@@ -48,7 +48,9 @@ const editBookings = async (req, res) => {
         const isValid = validateFields(req, res) 
         if (!isValid) return 
         const { id } = req.params;
+        console.log(id);
         const payload = req.body;
+        console.log(payload);
         const EditedBooking = await editBookingsService(id, payload)
         if(!EditedBooking) {
             return res.status(404).json('Reserva no encontrada')
