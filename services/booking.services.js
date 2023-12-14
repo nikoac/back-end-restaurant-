@@ -17,7 +17,7 @@ const editBookingsService = async (id, payload) => {
   const options = {
     new: true,
   }
-  await Booking.findByIdAndUpdate(id, payload)
+  await Booking.findByIdAndUpdate(id, payload, options)
 }
 
 const deleteBookingService = async (id) => {
