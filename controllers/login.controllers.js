@@ -24,7 +24,7 @@ const login = async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY,{
-      expiresIn: process.env.TOKEN_EXPIRES || 120,
+      expiresIn: process.env.TOKEN_EXPIRES || 3600,
     });
 
     res.status(200).json({ msg: 'Logueado exitosamente', token });
