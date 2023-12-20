@@ -8,4 +8,4 @@ const dbConnection = async() => {
     console.log('Ha ocurrido un problema');
   }
 }
-dbConnection()
+dbConnection();
