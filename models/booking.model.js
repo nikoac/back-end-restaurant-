@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose')
+const { calendar } = require('../helpers/utils')
 const BookingSchema = new Schema({
     day:{
         type:Number,
@@ -17,6 +18,12 @@ const BookingSchema = new Schema({
         required:[true, 'Ingrese el Mes'],
         min: [1, 'De Enero a Diciembre'],
         max: [12, 'De Enero a Diciembre']
+    },
+    year:{
+        type:Number,
+        required:[true, 'Ingrese el año'],
+        min:[calendar.getFullYear(), 'El año no es valido'],
+        max:[calendar.getFullYear()++, 'No se puede reservar por mas de 2 años']
     },
     guests:{
         type:Number,
