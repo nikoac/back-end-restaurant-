@@ -23,7 +23,7 @@ const BookingSchema = new Schema({
         type:Number,
         required:[true, 'Ingrese el año'],
         min:[calendar.getFullYear(), 'El año no es valido'],
-        max:[calendar.getFullYear()++, 'No se puede reservar por mas de 2 años']
+        max:[calendar.getFullYear() + 1, 'No se puede reservar por mas de 2 años']
     },
     guests:{
         type:Number,
