@@ -19,7 +19,7 @@ const userRoutes = require('../routes/users.routes')
 const loginRoutes = require('../routes/login.routes');
 
 // useRoutes
-
+app.use('/', express.static('/api'))
 app.use('/bookings', bookingRoutes);
 app.use('/users', userRoutes);
 app.use('/login', loginRoutes)

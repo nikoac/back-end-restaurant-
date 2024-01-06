@@ -1,7 +1,6 @@
 const { validationResult } = require("express-validator");
 
 const calendar = new Date();
-console.log(calendar.getDate())
 
 const validateFields = (req, res) => {
     const errors = validationResult(req);
