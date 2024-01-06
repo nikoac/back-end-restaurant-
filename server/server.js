@@ -19,10 +19,10 @@ const userRoutes = require('../routes/users.routes')
 const loginRoutes = require('../routes/login.routes');
 // useRoutes
 
-app.use('/', express.static('/api'))
-app.use('/bookings', bookingRoutes);
-app.use('/users', userRoutes);
-app.use('/login', loginRoutes)
+/*app.use('/', express.static('/api'))*/
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/login', loginRoutes)
 
 app.listen(PORT, () => {
     console.log(`Listening to the port ${PORT}`)
