@@ -1,6 +1,7 @@
 const { isObjectIdOrHexString } = require("mongoose");
 const { getUserByEmailService } = require("../services/user.services");
 const { body } = require("express-validator");
+const { calendar } = require("./utils");
 
 const checkEmailExistValidaton = async (email) => {
   const response = await getUserByEmailService(email);
@@ -24,6 +25,23 @@ const checkMaxAgeValidation = ( res,{ req }) => {
      return true
 };
 
+const checkMaxYearValidation = ( res,{ req }) => {
+  const year = req.body.yearofbirth;
+   if ( year > calendar.getFullYear()) {
+      throw new Error('Año de Nacimiento invalido')
+   } else (year < calendar.getFullYear() && year > calendar.getFullYear() - 100)
+     return true
+};
+
+const checkMinYearValidation =  ( res,{ req }) => {
+  const year = req.body.yearofbirth;
+  if ( 16 > calendar.getFullYear() - year) {
+    throw new Error('La edad minima es de 16 años')
+  } else (16 <= calendar.getFullYear() - year)
+  return true
+};
+
+
 
 const checkMinAgeValidation =  ( res,{ req }) => {
   const age = req.body.age;
@@ -40,6 +58,7 @@ module.exports = {
   checkEmailExistValidaton,
   isValidId,
   checkMaxAgeValidation,
-  checkMinAgeValidation
-  
+  checkMinAgeValidation,
+  checkMaxYearValidation,
+  checkMinYearValidation
 };

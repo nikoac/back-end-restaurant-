@@ -1,7 +1,7 @@
 const { isObjectIdOrHexString } = require("mongoose");
 const { getUserByEmailService } = require("../services/user.services");
 const { body, param} = require("express-validator");
-const { checkEmailExistValidaton, isValidId, checkMaxAgeValidation, checkMinAgeValidation } = require("../helpers/validation");
+const { checkEmailExistValidaton, isValidId, checkMaxAgeValidation, checkMinAgeValidation, checkMaxYearValidation, checkMinYearValidation } = require("../helpers/validation");
 
 
 const validateEmail = body("email")
@@ -46,6 +46,26 @@ const validateId = param("id")
 .isEmpty()
 .withMessage('Por favor escribe el id')
 
+/* Validaciones Año de nacimiento(checkear) */
+
+const validateYear = body('yearofbirth')
+.not()
+.isEmpty()
+.withMessage('Escriba su año de nacimiento')
+
+const validateYearMax = body('yearofbirth')
+.custom(checkMaxYearValidation)
+
+const validateYearMin = body('yearofbirth')
+.custom(checkMinYearValidation)
+
+/* Validacion para img de Avatar */
+const validateAvatar = body('avatar')
+.isURL()
+.not()
+.isEmpty()
+.withMessage('Escribir una URL valida')
+
 //getUserIdValidations
 const getUserIdValidations = [
   validateId
@@ -63,13 +83,19 @@ const createUserValidations = [
   validateName,
   validateLastName,
   validateAge,
+  validateYear,
+  validateYearMax,
+  validateYearMin
 ];
 
 //patchValidations
 const editUserValidations = [
   validateId,
   validateMaxAge,
-  validateMinAge
+  validateMinAge,
+  validateYearMax,
+  validateYearMin,
+  validateAvatar
 ]
 
 //deleteUserValidations
