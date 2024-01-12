@@ -1,8 +1,9 @@
 const { body, param } = require("express-validator");
-const { isValidId } = require("../helpers/validation");
+const { isValidId, checkEditBookingValidation, checkGuestsValidations, checkHourValidations, checkMonthValidations, checkEditYearValidations } = require("../helpers/validation");
 
 
 const validateDay = body('day')
+.custom(checkEditBookingValidation)
 .not()
 .isEmpty()
 .withMessage('El campo day es obligatorio')
@@ -25,6 +26,25 @@ const validateGuests = body('guests')
 const validateId = param('id')
 .custom(isValidId)
 
+const validateYear = body('year')
+.not()
+.isEmpty()
+.withMessage('El campo year es obligatorio')
+
+const validateEditGuestsBookings = body('guests')
+.custom(checkGuestsValidations)
+
+const validateEditHourBookings = body('hour')
+.custom(checkHourValidations)
+
+const validateEditMonthBookings = body ('month')
+.custom(checkMonthValidations)
+
+const validateEditDayBookings = body('day')
+.custom(checkEditBookingValidation)
+
+const ValidateEditYearBookings = body('year')
+.custom(checkEditYearValidations)
 
 //getIdBookingsValidations
 const getIdBookingsValidations = [
@@ -36,12 +56,19 @@ const createBookingsValidations = [
   validateDay,
   validateMonth,
   validateHour,
-  validateGuests
+  validateGuests,
+  validateYear
+  
 ]
 
 //patchValidations 
 const editBookingsValidations = [
-  validateId
+  validateId,
+  validateEditGuestsBookings,
+  validateEditHourBookings,
+  validateEditMonthBookings,
+  validateEditDayBookings,
+  ValidateEditYearBookings
 ]
 
 //deleteValidations

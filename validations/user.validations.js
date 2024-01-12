@@ -29,17 +29,6 @@ const validateLastName = body("lastName")
 .isEmpty()
 .withMessage("El campo lastName es obligatorio");
 
-const validateAge = body("age")
-.not()
-.isEmpty()
-.withMessage("El campo age es obligatorio");
-
-const validateMaxAge = body('age')
-.custom(checkMaxAgeValidation)
-
-const validateMinAge = body('age')
-.custom(checkMinAgeValidation)
-
 const validateId = param("id")
 .custom(isValidId)
 .not()
@@ -51,7 +40,7 @@ const validateId = param("id")
 const validateYear = body('yearofbirth')
 .not()
 .isEmpty()
-.withMessage('Escriba su año de nacimiento')
+.withMessage('Escriba su año de nacimiento, este campo es obligatorio')
 
 const validateYearMax = body('yearofbirth')
 .custom(checkMaxYearValidation)
@@ -65,6 +54,14 @@ const validateAvatar = body('avatar')
 .not()
 .isEmpty()
 .withMessage('Escribir una URL valida')
+
+const editEmailValidation = body('email')
+.custom(checkEmailExistValidaton)
+
+
+const editPassword = body('password')
+.matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[A-zA-Z]).{8,}$/)
+.withMessage("La contraseña no cumple los requisitos")
 
 //getUserIdValidations
 const getUserIdValidations = [
@@ -82,7 +79,6 @@ const createUserValidations = [
   validatePassword,
   validateName,
   validateLastName,
-  validateAge,
   validateYear,
   validateYearMax,
   validateYearMin
@@ -91,11 +87,11 @@ const createUserValidations = [
 //patchValidations
 const editUserValidations = [
   validateId,
-  validateMaxAge,
-  validateMinAge,
   validateYearMax,
   validateYearMin,
-  validateAvatar
+  //validateAvatar,
+  editEmailValidation
+  
 ]
 
 //deleteUserValidations
