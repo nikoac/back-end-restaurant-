@@ -27,7 +27,7 @@ const login = async (req, res) => {
       expiresIn: process.env.TOKEN_EXPIRES || 3600,
     });
 
-    res.status(200).json({ msg: 'Logueado exitosamente', token });
+    res.status(200).json({ msg: 'Logueado exitosamente', token , payload });
   } catch (error) {
     res.status(500).json(error.message);
   }
