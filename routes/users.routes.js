@@ -14,7 +14,7 @@ const { validateToken, validateRoll } = require("../middlewares/auth");
 
 const route = Router();
 
-route.get("/", getAllUsers);
+route.get("/", validateRoll, getAllUsers);
 
 route.get("/byId/:id", ...getUserIdValidations, validateToken, getUserById);
 
@@ -22,8 +22,8 @@ route.get("/checkEmailExist", ...getUserEmailValidations,checkEmailExist);
 
 route.post("/create", ...createUserValidations, createUser);
 
-route.patch("/edit/:id", ...editUserValidations ,editUser);
+route.patch("/edit/:id", ...editUserValidations, validateToken, editUser);
 
-route.delete("/delete/:id", ...deleteUserValidations, validateToken, validateRoll, deleteUser);
+route.delete("/delete/:id", /*...deleteUserValidations,*/ validateToken, validateRoll, deleteUser);
 
 module.exports = route;

@@ -3,13 +3,14 @@ const { getBookings, createBookings, editBookings, deleteBookings, getBookingsBy
 const { body, query, param } = require('express-validator')
 const { createBookingsValidations, getIdBookingsValidations, editBookingsValidations, deleteBookingsValidations, } = require('../validations/bookings.validations')
 const { isValidId } = require('../helpers/validation')
+const { validateRoll, validateToken } = require('../middlewares/auth')
 const routeB = Router()
 
-routeB.get('/', getBookings)
+routeB.get('/', validateRoll,  getBookings)
 
 routeB.get("/byId/:id", ...getIdBookingsValidations, getBookingsById)
 
-routeB.post('/create', ...createBookingsValidations, createBookings)
+routeB.post('/create', ...createBookingsValidations, validateToken, createBookings)
 
 routeB.patch('/edit/:id', ...editBookingsValidations, editBookings)
 

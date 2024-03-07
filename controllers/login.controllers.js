@@ -25,11 +25,13 @@ const login = async (req, res) => {
       _id: response._id
     };
 
+    const userID = response._id;
     const token = jwt.sign(payload, process.env.SECRET_KEY,{
       expiresIn: process.env.TOKEN_EXPIRES || 3600,
     });
+    
 
-    res.status(200).json({msg:'Login Success', token});
+    res.status(200).json({msg:'Login Success', token, userID});
   } catch (error) {
     res.status(500).json(error.message);
   }
