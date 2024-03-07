@@ -29,7 +29,7 @@ const login = async (req, res) => {
       expiresIn: process.env.TOKEN_EXPIRES || 3600,
     });
 
-    res.status(200).json(token);
+    res.status(200).json({token});
   } catch (error) {
     res.status(500).json(error.message);
   }
