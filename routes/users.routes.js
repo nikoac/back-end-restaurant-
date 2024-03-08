@@ -14,7 +14,7 @@ const { validateToken, validateRoll } = require("../middlewares/auth");
 
 const route = Router();
 
-route.get("/", validateRoll, getAllUsers);
+route.get("/", validateToken, validateRoll, getAllUsers);
 
 route.get("/byId/:id", ...getUserIdValidations, validateToken, getUserById);
 
