@@ -3,7 +3,7 @@ const { hasingPassword } = require('../helpers/hashPassword');
 const User = require('../models/user.model');
 const { getAllUsersService, getUserByIdService, editUserService, createUserService, deleteUserService, getUserByEmailService } = require('../services/user.services');
 const bcrypt = require ('bcrypt');
-const { isObjectIdOrHexString } = require('mongoose');
+//const { isObjectIdOrHexString } = require('mongoose');
 const { validateFields } = require('../helpers/utils');
 
 const getAllUsers = async (req, res) => {
@@ -17,8 +17,8 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
     try {
-        const isValid = validateFields(req, res) 
-        if (!isValid) return 
+        // const isValid = validateFields(req, res) 
+        // if (!isValid) return 
         const { id } = req.params;
         const response = await getUserByIdService(id);
         if (!response)
@@ -31,15 +31,15 @@ const getUserById = async (req, res) => {
 
 const checkEmailExist = async (req, res) => {
     try {
-      const isValid = validateFields(req, res) 
-      if (!isValid) return 
+    //   const isValid = validateFields(req, res) 
+    //   if (!isValid) return 
 
       const { email } = req.query;
       const response = await getUserByEmailService(email);
       if (response) {
-        return res.status(200).json(false);
+        return res.status(200).json(true);
       }
-      res.status(200).json(true);
+      res.status(200).json(false);
     } catch (error) {
       res.status(500).json(error.message);
     }

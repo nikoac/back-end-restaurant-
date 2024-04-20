@@ -69,7 +69,7 @@ const checkMonthValidations = (res, {req}) => {
     throw new Error('Por favor ingrese un mes de enero a diciembre en numeros (1 al 12)')
   }
   if (month < calendar.getMonth() +1) {
-   throw new Error('El mes que estas ingresando ya paso') 
+   throw new Error('El mes que estas ingresando ya paso'); 
   }
   return true
 }

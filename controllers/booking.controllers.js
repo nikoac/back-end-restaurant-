@@ -2,6 +2,7 @@ const { validateFields } = require('../helpers/utils');
 const Booking = require('../models/booking.model');
 const { options } = require('../routes/booking.routes');
 const { getAllBookingsService, createBookingsService, editBookingsService, deleteBookingService, getBookingsByIdService } = require('../services/booking.services');
+const { getUserByEmailService } = require('../services/user.services');
 
 
 const getBookings = async (req, res) => {

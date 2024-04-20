@@ -58,6 +58,7 @@ const createBookingsValidations = [
   validateHour,
   validateGuests,
   validateYear
+
   
 ]
 

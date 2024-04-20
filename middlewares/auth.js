@@ -8,7 +8,7 @@ const validateToken = async(req, res, next) => {
             if (error) return res.status(401).json('Token inválido');
             req.user = decoded;
             next();
-        } )
+        } );
     } catch (error) {
         res.status(500).json(error);
     }
