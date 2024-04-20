@@ -57,15 +57,10 @@ const validateAvatar = body('avatar')
 
 const editEmailValidation = body('email')
 .isEmail()
-<<<<<<< Updated upstream
 .withMessage("El campo email no es un email valido")
 .not()
 .isEmpty()
 .withMessage("El campo email es obligatorio")
-=======
-.withMessage('El campo email no es un email valido')
-.custom(checkEmailExistValidaton)
->>>>>>> Stashed changes
 
 
 const editPassword = body('password')
