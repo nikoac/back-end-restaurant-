@@ -1,6 +1,11 @@
 const { Schema, model } = require('mongoose')
 const { calendar } = require('../helpers/utils')
 const BookingSchema = new Schema({
+    email: {
+        type: String,
+        required: [true, 'Este campo es requerido'],
+        lowercase: true,
+    },
     day:{
         type:Number,
         required:[true, 'Ingrese el Dia'],

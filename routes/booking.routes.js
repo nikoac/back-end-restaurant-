@@ -1,16 +1,18 @@
 const { Router } = require('express')
-const { getBookings, createBookings, editBookings, deleteBookings, getBookingsById } = require('../controllers/booking.controllers')
-const { body, query, param } = require('express-validator')
+const { getBookings, editBookings, createBookings, deleteBookings, getBookingsById } = require('../controllers/booking.controllers')
 const { createBookingsValidations, getIdBookingsValidations, editBookingsValidations, deleteBookingsValidations, } = require('../validations/bookings.validations')
 const { isValidId } = require('../helpers/validation')
 const { validateRoll, validateToken } = require('../middlewares/auth')
-const routeB = Router()
+const { checkEmailExist } = require('../controllers/users.controllers')
+const routeB = Router();
 
-routeB.get('/', validateRoll,  getBookings)
+routeB.get('/',validateToken, validateRoll, getBookings)
 
 routeB.get("/byId/:id", ...getIdBookingsValidations, getBookingsById)
 
-routeB.post('/create', ...createBookingsValidations, validateToken, createBookings)
+routeB.get('/checkEmailExist', checkEmailExist)
+
+routeB.post('/create',  createBookings) 
 
 routeB.patch('/edit/:id', ...editBookingsValidations, editBookings)
 

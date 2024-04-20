@@ -56,7 +56,11 @@ const validateAvatar = body('avatar')
 .withMessage('Escribir una URL valida')
 
 const editEmailValidation = body('email')
-.custom(checkEmailExistValidaton)
+.isEmail()
+.withMessage("El campo email no es un email valido")
+.not()
+.isEmpty()
+.withMessage("El campo email es obligatorio")
 
 
 const editPassword = body('password')
