@@ -57,8 +57,12 @@ const createBookingsValidations = [
   validateMonth,
   validateHour,
   validateGuests,
-  validateYear
-
+  validateYear,
+  validateEditGuestsBookings,
+  validateEditHourBookings,
+  validateEditMonthBookings,
+  validateEditDayBookings,
+  ValidateEditYearBookings
   
 ]
 

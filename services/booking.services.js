@@ -13,6 +13,10 @@ const createBookingsService = async (payload) => {
   await newBooking.save();
 }
 
+const checkUserBookingService = async (email) => {
+  return await Booking.findOne({email});
+}
+
 const editBookingsService = async (id, payload) => {
   const options = {
     new: true,
@@ -29,5 +33,6 @@ module.exports ={
   createBookingsService,
   editBookingsService,
   deleteBookingService,
-  getBookingsByIdService
+  getBookingsByIdService,
+  checkUserBookingService
 }

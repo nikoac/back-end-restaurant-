@@ -1,7 +1,7 @@
 const { validateFields } = require('../helpers/utils');
 const Booking = require('../models/booking.model');
 const { options } = require('../routes/booking.routes');
-const { getAllBookingsService, createBookingsService, editBookingsService, deleteBookingService, getBookingsByIdService } = require('../services/booking.services');
+const { getAllBookingsService, createBookingsService, editBookingsService, deleteBookingService, getBookingsByIdService, checkUserBookingService } = require('../services/booking.services');
 const { getUserByEmailService } = require('../services/user.services');
 
 
@@ -44,6 +44,23 @@ const createBookings = async (req, res) => {
     }
 }
 
+const checkUserBooking = async (req, res) => {
+    try {
+        const { email } = req.query
+        console.log(email);
+         const response = await checkUserBookingService(email);
+         console.log(response);
+        //  res.status(200).json( {isReserved: response ? true : false})
+        if (response) {
+            return res.status(200).json(true);    
+        };
+        res.status(200).json(false);
+    } catch (error) {
+        console.log(error, 'soy el error');
+        res.status(500).json(error.message)
+    }
+}
+
 const editBookings = async (req, res) => {
     try {
         const isValid = validateFields(req, res) 
@@ -80,5 +97,6 @@ module.exports = {
     editBookings,
     deleteBookings,
     getBookingsById,
-    createBookings
+    createBookings,
+    checkUserBooking
 }
