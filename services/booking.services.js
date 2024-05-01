@@ -7,6 +7,9 @@ const getAllBookingsService = async () =>{
 const getBookingsByIdService = async (id) => {
   return await Booking.findById(id)
 }
+const getBookingsByEmail = async (email) => {
+  return await Booking.findOne({email})
+}
 
 const createBookingsService = async (payload) => {
   const newBooking =  new Booking(payload);
@@ -34,5 +37,6 @@ module.exports ={
   editBookingsService,
   deleteBookingService,
   getBookingsByIdService,
-  checkUserBookingService
+  checkUserBookingService,
+  getBookingsByEmail
 }
