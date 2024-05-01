@@ -28,11 +28,12 @@ const login = async (req, res) => {
     };
     const UserBooking = await getBookingsByEmail(email)
     if (!UserBooking) {
-      const userID = response._id;
+      const userID = response._id
+      const userAvatar = response.avatar;
     const token = jwt.sign(payload, process.env.SECRET_KEY,{
       expiresIn: 1000,
     });
-    res.status(200).json({msg:'Login Success', token, userID})
+    res.status(200).json({msg:'Login Success', token, userID, userAvatar})
     } else {
       const userBooking = JSON.stringify(UserBooking)
       const userID = response._id;
