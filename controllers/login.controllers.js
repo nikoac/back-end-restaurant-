@@ -34,11 +34,12 @@ const login = async (req, res) => {
     });
     res.status(200).json({msg:'Login Success', token, userID})
     } else {
+      const userBooking = JSON.stringify(UserBooking)
       const userID = response._id;
     const token = jwt.sign(payload, process.env.SECRET_KEY,{
       expiresIn: 1000,
     });
-    res.status(200).json({msg:'Login Success', token, userID, UserBooking})
+    res.status(200).json({msg:'Login Success', token, userID, userBooking})
     };
   } catch (error) {
     res.status(500).json(error.message);
