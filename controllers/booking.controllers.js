@@ -30,6 +30,16 @@ const getBookingsById = async (req, res) => {
 
 } 
 
+// controlador que busca la reserva por email
+const getBookingByEmail = async (req, res) => {
+    try {
+        const {email} = req.query;
+        const response = await checkUserBookingService(email)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+}
 
 const createBookings = async (req, res) => {
     try {
@@ -98,5 +108,6 @@ module.exports = {
     deleteBookings,
     getBookingsById,
     createBookings,
-    checkUserBooking
+    checkUserBooking,
+    getBookingByEmail
 }

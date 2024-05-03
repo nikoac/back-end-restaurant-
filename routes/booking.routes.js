@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getBookings, editBookings, createBookings, deleteBookings, getBookingsById, checkUserBooking } = require('../controllers/booking.controllers')
+const { getBookings, editBookings, createBookings, deleteBookings, getBookingsById, checkUserBooking, getBookingByEmail } = require('../controllers/booking.controllers')
 const { createBookingsValidations, getIdBookingsValidations, editBookingsValidations, deleteBookingsValidations, } = require('../validations/bookings.validations')
 const { isValidId } = require('../helpers/validation')
 const { validateRoll, validateToken } = require('../middlewares/auth')
@@ -13,6 +13,8 @@ routeB.get("/byId/:id", ...getIdBookingsValidations, getBookingsById)
 routeB.get('/checkEmailExist', checkEmailExist);
 
 routeB.get('/checkUserBooking', checkUserBooking );
+
+routeB.get('/byEmail', getBookingByEmail );
 
 routeB.post('/create', ...createBookingsValidations, createBookings) 
 
