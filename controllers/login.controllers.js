@@ -30,18 +30,20 @@ const login = async (req, res) => {
     if (!UserBooking) {
       const userID = response._id
       const userAvatar = response.avatar;
+      const userRole = response.role;
     const token = jwt.sign(payload, process.env.SECRET_KEY,{
-      expiresIn: 1000,
+      expiresIn: 10000,
     });
-    res.status(200).json({msg:'Login Success', token, userID, userAvatar})
+    res.status(200).json({msg:'Login Success', token, userID, userAvatar, userRole})
     } else {
       const userBooking = JSON.stringify(UserBooking)
       const userID = response._id;
       const userAvatar = response.avatar;
+      const userRole = response.role;
     const token = jwt.sign(payload, process.env.SECRET_KEY,{
-      expiresIn: 1000,
+      expiresIn: 10000,
     });
-    res.status(200).json({msg:'Login Success', token, userID, userBooking, userAvatar})
+    res.status(200).json({msg:'Login Success', token, userID, userBooking, userAvatar, userRole})
     };
   } catch (error) {
     res.status(500).json(error.message);
